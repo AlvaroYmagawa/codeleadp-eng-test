@@ -1,6 +1,12 @@
-export interface ITheme {
+export type IColors = {
   primary: string;
-  primaryText: string;
   background: string;
   element: string;
+  primaryText: string;
+  strongText: string;
+  opaqueText: string;
+};
+
+export interface ITheme {
+  colors: IColors;
 }

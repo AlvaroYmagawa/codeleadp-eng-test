@@ -6,7 +6,7 @@ import { colors } from "shared/styles/colors";
 const ThemeContext = createContext({});
 
 const ThemeProvider = ({ children }: { children: ReactElement }) => {
-  const [theme, setTheme] = useState(colors);
+  const [theme, setTheme] = useState({ colors });
 
   return (
     <ThemeContext.Provider value={{ theme }}>

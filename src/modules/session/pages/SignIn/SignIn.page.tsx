@@ -1,3 +1,9 @@
+import { Typography } from "shared/components/atoms";
+
 export const SignInPage = () => {
-  return <div>SignIn.page</div>;
+  return (
+    <div>
+      <Typography>Sign in Page</Typography>
+    </div>
+  );
 };
