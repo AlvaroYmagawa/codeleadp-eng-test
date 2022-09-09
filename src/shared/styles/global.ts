@@ -6,6 +6,6 @@ export const GlobalStyles = createGlobalStyle`
   padding: 0;
   outline: 0;
   box-sizing: border-box;
-  font: 18px 'Roboto', sans-serif;
+  font: 14px 'Roboto', sans-serif;
 }
 `;
