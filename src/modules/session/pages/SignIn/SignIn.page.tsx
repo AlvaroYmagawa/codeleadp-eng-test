@@ -1,11 +1,13 @@
-import { Typography, Button, Input } from "shared/components/atoms";
+import { Typography, Button, Input, Card } from "shared/components/atoms";
 
 export const SignInPage = () => {
   return (
     <div>
-      <Typography>Sign in Page</Typography>
-      <Button content="Cancel" />
-      <Input placeholder="Digite sua senha" />
+      <Card>
+        <Typography variant="title">Sign in Page</Typography>
+        <Button content="Cancel" />
+        <Input title='Nome' placeholder="Digite sua senha" />
+      </Card>
     </div>
   );
 };

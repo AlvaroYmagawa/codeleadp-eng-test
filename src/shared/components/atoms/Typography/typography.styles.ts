@@ -12,8 +12,11 @@ const getVariantStyles = (colors: IColors, variant: TypographyVariants) => {
     case "primaryTitle":
       return { color: primaryText, fontSize: 22, fontWeight: 700 };
 
+    case "title":
+      return { color: strongText, fontSize: 22, fontWeight: 700 };
+
     default:
-      return { color: strongText, fontSize: 18 };
+      return { color: strongText, fontSize: 14 };
   }
 };
 

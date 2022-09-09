@@ -8,7 +8,7 @@ export const Button = ({
   ...rest
 }: ButtonProps) => {
   return (
-    <C.Button variant={variant} onClick={onClick}>
+    <C.Button {...rest} variant={variant} onClick={onClick}>
       {content}
     </C.Button>
   );

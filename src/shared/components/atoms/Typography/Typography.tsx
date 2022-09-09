@@ -7,5 +7,9 @@ export const Typography = ({
   children,
   ...rest
 }: TypographyProps) => {
-  return <C.Typography variant={variant} {...rest}>{children}</C.Typography>;
+  return (
+    <C.Typography variant={variant} {...rest}>
+      {children}
+    </C.Typography>
+  );
 };
