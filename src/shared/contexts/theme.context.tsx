@@ -2,6 +2,7 @@ import { ReactElement, useState } from "react";
 import { createContext, useContext } from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { colors } from "shared/styles/colors";
+import { GlobalStyles } from "shared/styles/global";
 
 const ThemeContext = createContext({});
 
@@ -10,6 +11,7 @@ const ThemeProvider = ({ children }: { children: ReactElement }) => {
 
   return (
     <ThemeContext.Provider value={{ theme }}>
+      <GlobalStyles />
       <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
     </ThemeContext.Provider>
   );
