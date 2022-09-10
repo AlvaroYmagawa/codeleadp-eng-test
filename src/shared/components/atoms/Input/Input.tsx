@@ -4,6 +4,8 @@ import * as C from "./input.styles";
 export const Input = ({
   title,
   placeholder,
+  value,
+  name,
   onChange = () => {},
   ...rest
 }: InputProps) => {
@@ -12,6 +14,8 @@ export const Input = ({
       {title && <C.Title>{title}</C.Title>}
 
       <C.Input
+        name={name}
+        value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
       />
