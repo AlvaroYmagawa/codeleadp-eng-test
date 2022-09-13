@@ -1,42 +1,20 @@
-import { listPosts } from "modules/posts/apis/posts.apis";
-import { PostForm, PostList } from "modules/posts/components";
+import { PostList } from "modules/posts/components";
+import { usePosts } from "modules/posts/hooks";
 import { useEffect } from "react";
 import * as C from "./posts.page.styles";
 
 export const PostsPage = () => {
+  const { loadPosts, posts, apiStatus } = usePosts();
+
   useEffect(() => {
-    listPosts();
-  }, []);
+    loadPosts();
+  }, [loadPosts]);
 
   return (
     <C.Container>
-      <PostForm />
+      <C.PostArea />
 
-      <PostList
-        posts={[
-          {
-            id: 1,
-            username: "@kenzoYmagawa",
-            content: "asuhau husa uh asuh sauhas uh",
-            title: "My first post on CodeLeap",
-            created_datetime: "25 minutes ago",
-          },
-          {
-            id: 2,
-            username: "@kenzoYmagawa",
-            content: "asuhau husa uh asuh sauhas uh",
-            title: "My first post on CodeLeap",
-            created_datetime: "25 minutes ago",
-          },
-          {
-            id: 3,
-            username: "@kenzoYmagawa",
-            content: "asuhau husa uh asuh sauhas uh",
-            title: "My first post on CodeLeap",
-            created_datetime: "25 minutes ago",
-          },
-        ]}
-      />
+      <PostList isLoading={apiStatus === "pending"} posts={posts} />
     </C.Container>
   );
 };
