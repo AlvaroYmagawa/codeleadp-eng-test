@@ -1,4 +1,4 @@
-import { Button, Card, Typography } from "shared/components/atoms";
+import { Button, Card, Typography, TextArea } from "shared/components/atoms";
 import styled from "styled-components";
 
 export const Container = styled(Card)``;
@@ -6,6 +6,10 @@ export const Container = styled(Card)``;
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+`;
+
+export const Content = styled(TextArea)`
+  margin-top: 19px;
 `;
 
 export const Title = styled(Typography)`

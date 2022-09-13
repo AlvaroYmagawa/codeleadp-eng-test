@@ -1,6 +1,6 @@
 import { IBaseComponent } from "shared/interfaces";
 
-export interface InputProps extends IBaseComponent {
+export interface TextAreaProps extends IBaseComponent {
   title?: string;
   name: string;
   placeholder: string;

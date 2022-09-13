@@ -1,7 +1,8 @@
-import { IPost } from "modules/posts/interfaces/posts.interfaces";
 import { memo } from "react";
+import { IPost } from "modules/posts/interfaces/posts.interfaces";
 import { Post, PostLoader } from "../Post";
 import { PostListProps } from "./postList.interface";
+import { formatDistanceToNow } from "date-fns";
 
 const MemoPost = memo(Post);
 
@@ -14,8 +15,9 @@ const Posts = ({ posts }: { posts: IPost[] }) => (
 
       return (
         <MemoPost
+          key={post.id}
           {...post}
-          createdAt={created_datetime}
+          createdAt={formatDistanceToNow(new Date(created_datetime))}
           style={{ marginBottom: 45 }}
         />
       );

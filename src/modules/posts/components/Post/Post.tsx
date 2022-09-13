@@ -15,7 +15,7 @@ export const Post = ({
 
         <C.Icons>
           <C.DeleteIcon name="delete" size={24} />
-          <C.EditIcon name="edit"size={24} />
+          <C.EditIcon name="edit" size={24} />
         </C.Icons>
       </C.Header>
 

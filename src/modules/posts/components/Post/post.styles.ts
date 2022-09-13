@@ -54,4 +54,5 @@ export const CreatedAt = styled(Typography)``;
 
 export const Content = styled(Typography)`
   margin-top: 18px;
+  font-size: 18px;
 `;
