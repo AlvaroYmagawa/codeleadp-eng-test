@@ -7,7 +7,7 @@ export const PostForm = ({ title, content, ...rest }: PostFormProps) => {
   const {
     control,
     formState: { isDirty, isValid },
-  } = useForm({ defaultValues: { title, content } });
+  } = useForm({ mode: 'onChange', defaultValues: { title, content } });
 
   return (
     <C.Container {...rest}>
@@ -23,8 +23,8 @@ export const PostForm = ({ title, content, ...rest }: PostFormProps) => {
         />
 
         <C.SubmitButton
-          content="CREATE"
           type="submit"
+          content="CREATE"
           disabled={!isDirty || !isValid}
         />
       </C.Form>
