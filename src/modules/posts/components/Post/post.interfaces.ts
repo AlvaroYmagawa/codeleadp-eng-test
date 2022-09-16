@@ -5,4 +5,6 @@ export interface PostProps extends IBaseComponent {
   createdAt: string;
   content: string;
   title: string;
+  onUpdate?: () => void;
+  onDelete?: () => void;
 }

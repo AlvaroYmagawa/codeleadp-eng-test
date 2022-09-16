@@ -1,4 +1,5 @@
-import { Button, Card, Typography, TextArea } from "shared/components/atoms";
+import { Button, Card, Typography } from "shared/components/atoms";
+import { FormTextArea } from "shared/components/molecules";
 import styled from "styled-components";
 
 export const Container = styled(Card)``;
@@ -8,7 +9,7 @@ export const Form = styled.form`
   flex-direction: column;
 `;
 
-export const Content = styled(TextArea)`
+export const Content = styled(FormTextArea)`
   margin-top: 19px;
 `;
 

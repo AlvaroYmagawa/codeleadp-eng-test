@@ -6,6 +6,8 @@ export const Post = ({
   content,
   createdAt,
   username,
+  onDelete = () => {},
+  onUpdate = () => {},
   ...rest
 }: PostProps) => {
   return (
@@ -14,14 +16,14 @@ export const Post = ({
         <C.Title variant="title">{title}</C.Title>
 
         <C.Icons>
-          <C.DeleteIcon name="delete" size={24} />
-          <C.EditIcon name="edit" size={24} />
+          <C.DeleteIcon name="delete" size={24} onClick={onDelete} />
+          <C.EditIcon name="edit" size={24} onClick={onUpdate} />
         </C.Icons>
       </C.Header>
 
       <C.ContentConainer>
         <C.Infos>
-          <C.Username variant="opaque">{username}</C.Username>
+          <C.Username variant="opaque">{`@${username}`}</C.Username>
 
           <C.CreatedAt variant="opaque">{createdAt}</C.CreatedAt>
         </C.Infos>

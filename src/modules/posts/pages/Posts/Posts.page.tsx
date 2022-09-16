@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import * as C from "./posts.page.styles";
 
 export const PostsPage = () => {
-  const { loadPosts, posts, apiStatus } = usePosts();
+  const { loadPosts, createPost, deletePost, posts, apiStatus } = usePosts();
 
   useEffect(() => {
     loadPosts();
@@ -12,9 +12,13 @@ export const PostsPage = () => {
 
   return (
     <C.Container>
-      <C.PostArea />
+      <C.PostArea onSubmit={createPost} />
 
-      <PostList isLoading={apiStatus === "pending"} posts={posts} />
+      <PostList
+        isLoading={apiStatus === "pending"}
+        posts={posts}
+        onDelete={({ id }) => deletePost({ id })}
+      />
     </C.Container>
   );
 };

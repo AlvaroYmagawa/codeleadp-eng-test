@@ -1,18 +1,32 @@
 import { useForm } from "react-hook-form";
-import { TextArea } from "shared/components/atoms";
 import { FormInput } from "shared/components/molecules";
-import { PostFormProps } from "./postForm.interfaces";
+import { useAppSelector } from "shared/hooks";
+import { PostFormData, PostFormProps } from "./postForm.interfaces";
 import * as C from "./postForm.styles";
 
-export const PostForm = ({ title, content, ...rest }: PostFormProps) => {
+export const PostForm = ({
+  title,
+  content,
+  onSubmit = () => {},
+  ...rest
+}: PostFormProps) => {
+  const { username } = useAppSelector((state) => state.session);
   const {
     control,
+    handleSubmit,
     formState: { isDirty, isValid },
-  } = useForm({ mode: "onChange", defaultValues: { title, content } });
+  } = useForm<PostFormData>({
+    mode: "onChange",
+    defaultValues: { title, content },
+  });
 
   return (
     <C.Container {...rest}>
-      <C.Form>
+      <C.Form
+        onSubmit={handleSubmit(({ content, title }) =>
+          onSubmit({ content, title, username })
+        )}
+      >
         <C.Title variant="title">What's on your mind?</C.Title>
 
         <FormInput
@@ -22,7 +36,12 @@ export const PostForm = ({ title, content, ...rest }: PostFormProps) => {
           placeholder="Hello world"
         />
 
-        <C.Content title="Content" name="content" placeholder="Content here" />
+        <C.Content
+          control={control}
+          title="Content"
+          name="content"
+          placeholder="Content here"
+        />
 
         <C.SubmitButton
           type="submit"

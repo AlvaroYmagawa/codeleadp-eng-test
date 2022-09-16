@@ -6,4 +6,5 @@ export interface IconProps extends IBaseComponent {
   name: IconNames;
   color?: string;
   size?: number;
+  onClick?: () => void;
 }
