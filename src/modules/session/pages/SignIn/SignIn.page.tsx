@@ -1,18 +1,14 @@
 import * as C from "./signIn.page.styles";
 import logo from "shared/assets/logo.png";
 import { useForm } from "react-hook-form";
-import { FormInput } from "shared/components/molecules";
 import { useAppDispatch } from "shared/hooks";
 import { saveUsernameAction } from "modules/session/redux";
+import { useState } from "react";
+import { Input } from "shared/components/atoms";
 
 export const SignInPage = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { isDirty, isValid },
-  } = useForm({
-    mode: "onChange",
-  });
+  const { handleSubmit } = useForm();
+  const [username, setUsername] = useState("");
   const dispatch = useAppDispatch();
 
   return (
@@ -20,26 +16,21 @@ export const SignInPage = () => {
       <C.Logo src={logo} />
 
       <C.Form
-        onSubmit={handleSubmit((data) =>
-          dispatch(saveUsernameAction(data.username))
-        )}
+        onSubmit={handleSubmit(() => dispatch(saveUsernameAction(username)))}
       >
         <C.Title variant="title" style={{ marginBottom: 30 }}>
           Welcome to CodeLeap network
         </C.Title>
 
-        <FormInput
+        <Input
           name="username"
-          control={control}
+          value={username}
+          onChange={setUsername}
           placeholder="John doe"
           title="Please enter your username"
         />
 
-        <C.SubmitButton
-          type="submit"
-          content="Enter"
-          disabled={!isValid || !isDirty}
-        />
+        <C.SubmitButton type="submit" content="Enter" disabled={!username} />
       </C.Form>
     </C.Container>
   );
