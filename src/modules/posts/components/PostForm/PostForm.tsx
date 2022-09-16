@@ -5,9 +5,9 @@ import { PostFormData, PostFormProps } from "./postForm.interfaces";
 import * as C from "./postForm.styles";
 
 export const PostForm = ({
-  title,
-  content,
+  defaultValues,
   onSubmit = () => {},
+  isLoading = false,
   ...rest
 }: PostFormProps) => {
   const { username } = useAppSelector((state) => state.session);
@@ -17,7 +17,7 @@ export const PostForm = ({
     formState: { isDirty, isValid },
   } = useForm<PostFormData>({
     mode: "onChange",
-    defaultValues: { title, content },
+    defaultValues,
   });
 
   return (
@@ -45,8 +45,9 @@ export const PostForm = ({
 
         <C.SubmitButton
           type="submit"
-          content="CREATE"
+          content={defaultValues ? 'SAVE' : 'CREATE'}
           disabled={!isDirty || !isValid}
+          isLoading={isLoading}
         />
       </C.Form>
     </C.Container>

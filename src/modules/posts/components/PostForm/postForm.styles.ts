@@ -2,7 +2,10 @@ import { Button, Card, Typography } from "shared/components/atoms";
 import { FormTextArea } from "shared/components/molecules";
 import styled from "styled-components";
 
-export const Container = styled(Card)``;
+export const Container = styled(Card)`
+  width: 100%;
+  background-color: ${({ theme: { colors } }) => colors.element};
+`;
 
 export const Form = styled.form`
   display: flex;

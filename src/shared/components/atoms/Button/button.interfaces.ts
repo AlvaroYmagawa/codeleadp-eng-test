@@ -7,5 +7,6 @@ export interface ButtonProps extends IBaseComponent {
   variant?: ButtonVariants;
   disabled?: boolean;
   content: string;
-  type?: 'submit' | 'reset' | 'button' | undefined;
+  type?: "submit" | "reset" | "button" | undefined;
+  isLoading?: boolean;
 }

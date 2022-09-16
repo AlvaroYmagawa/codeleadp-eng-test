@@ -3,8 +3,13 @@ import { createContext, useContext } from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { colors } from "shared/styles/colors";
 import { GlobalStyles } from "shared/styles/global";
+import { ITheme } from "shared/interfaces";
 
-const ThemeContext = createContext({});
+type ThemeContextData = {
+  theme: ITheme;
+};
+
+const ThemeContext = createContext<ThemeContextData>({} as ThemeContextData);
 
 const ThemeProvider = ({ children }: { children: ReactElement }) => {
   const [theme, setTheme] = useState({ colors });

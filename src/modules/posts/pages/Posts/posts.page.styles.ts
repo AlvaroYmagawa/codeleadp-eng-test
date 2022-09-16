@@ -1,4 +1,4 @@
-import { PostForm } from "modules/posts/components";
+import { PostForm, PostList } from "modules/posts/components";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -7,6 +7,11 @@ export const Container = styled.div`
   padding: 3%;
 `;
 
+export const Posts = styled(PostList)`
+  margin-top: 35px;
+`;
+
 export const PostArea = styled(PostForm)`
-  margin-bottom: 35px;
+  max-width: 800px;
+  margin: 0 auto;
 `;
