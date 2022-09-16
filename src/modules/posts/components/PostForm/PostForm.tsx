@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FormInput } from "shared/components/molecules";
+import { Input } from "shared/components/atoms";
+
 import { useAppSelector } from "shared/hooks";
 import { PostFormData, PostFormProps } from "./postForm.interfaces";
 import * as C from "./postForm.styles";
@@ -11,33 +13,36 @@ export const PostForm = ({
   ...rest
 }: PostFormProps) => {
   const { username } = useAppSelector((state) => state.session);
-  const {
-    control,
-    handleSubmit,
-    formState: { isDirty, isValid },
-  } = useForm<PostFormData>({
-    mode: "onChange",
-    defaultValues,
-  });
+  const [title, setTitle] = useState(defaultValues?.title || "");
+  const [content, setContent] = useState(defaultValues?.content || "");
+  const { handleSubmit } = useForm<PostFormData>();
+
+  const clearForm = () => {
+    setTitle("");
+    setContent("");
+  };
 
   return (
     <C.Container {...rest}>
       <C.Form
-        onSubmit={handleSubmit(({ content, title }) =>
-          onSubmit({ content, title, username })
-        )}
+        onSubmit={handleSubmit(() => {
+          onSubmit({ content, title, username });
+          clearForm();
+        })}
       >
         <C.Title variant="title">What's on your mind?</C.Title>
 
-        <FormInput
+        <Input
+          value={title}
+          onChange={setTitle}
           title="Title"
           name="title"
-          control={control}
           placeholder="Hello world"
         />
 
         <C.Content
-          control={control}
+          value={content}
+          onChange={setContent}
           title="Content"
           name="content"
           placeholder="Content here"
@@ -45,8 +50,8 @@ export const PostForm = ({
 
         <C.SubmitButton
           type="submit"
-          content={defaultValues ? 'SAVE' : 'CREATE'}
-          disabled={!isDirty || !isValid}
+          content={defaultValues ? "SAVE" : "CREATE"}
+          disabled={title === "" || content === ""}
           isLoading={isLoading}
         />
       </C.Form>
