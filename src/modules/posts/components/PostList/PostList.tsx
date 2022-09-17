@@ -9,19 +9,22 @@ const Loader = () => <PostLoader style={{ marginBottom: 45 }} />;
 
 const Posts = ({
   posts,
+  username,
   onDelete = () => {},
   onUpdate = () => {},
 }: PostListProps) => (
   <div>
     {posts.map((post) => {
-      const { created_datetime } = post;
+      const { created_datetime, username: postUsername } = post;
+
+      const isMyPost = postUsername === username;
 
       return (
         <MemoPost
           key={post.id}
           {...post}
-          onDelete={() => onDelete(post)}
-          onUpdate={() => onUpdate(post)}
+          onDelete={isMyPost ? () => onDelete(post) : undefined}
+          onUpdate={isMyPost ? () => onUpdate(post) : undefined}
           createdAt={formatDistanceToNow(new Date(created_datetime))}
           style={{ marginBottom: 45 }}
         />

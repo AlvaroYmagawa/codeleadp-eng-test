@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { usePosts } from "modules/posts/hooks";
 import { IPost } from "modules/posts/interfaces/posts.interfaces";
-import { Modal } from "shared/components/atoms";
+import { Modal, Typography } from "shared/components/atoms";
 import * as C from "./posts.page.styles";
 import { ICreatePostDTO } from "modules/posts/interfaces/dtos";
 import { useAlert } from "shared/contexts/alert.context";
-import { useAppDispatch } from "shared/hooks";
+import { useAppDispatch, useAppSelector } from "shared/hooks";
 import { logoutAction } from "modules/session/redux";
 
 export const PostsPage = () => {
   const dispatch = useAppDispatch();
+  const { username } = useAppSelector((state) => state.session);
   const { closeAlert, openAlert } = useAlert();
   const { loadPosts, createPost, updatePost, deletePost, posts, apiStatus } =
     usePosts();
@@ -55,16 +56,21 @@ export const PostsPage = () => {
 
   return (
     <C.Container>
-      <C.LogoutButton
-        content="Log out"
-        variant="outlined"
-        onClick={handleOnLogout}
-      />
+      <C.Header>
+        <Typography variant="primaryTitle">CodeLead Network</Typography>
+
+        <C.LogoutButton
+          content="Log out"
+          variant="outlined"
+          onClick={handleOnLogout}
+        />
+      </C.Header>
 
       <C.PostArea onSubmit={createPost} isLoading={apiStatus === "creating"} />
 
       <C.Posts
         posts={posts}
+        username={username}
         isLoading={apiStatus === "pending"}
         onUpdate={(post) => setPost(post)}
         onDelete={handleOnDelete}

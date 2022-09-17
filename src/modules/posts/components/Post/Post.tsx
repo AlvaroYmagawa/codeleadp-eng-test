@@ -6,8 +6,8 @@ export const Post = ({
   content,
   createdAt,
   username,
-  onDelete = () => {},
-  onUpdate = () => {},
+  onDelete,
+  onUpdate,
   ...rest
 }: PostProps) => {
   return (
@@ -16,8 +16,10 @@ export const Post = ({
         <C.Title variant="title">{title}</C.Title>
 
         <C.Icons>
-          <C.DeleteIcon name="delete" size={24} onClick={onDelete} />
-          <C.EditIcon name="edit" size={24} onClick={onUpdate} />
+          {onDelete && (
+            <C.DeleteIcon name="delete" size={24} onClick={onDelete} />
+          )}
+          {onUpdate && <C.EditIcon name="edit" size={24} onClick={onUpdate} />}
         </C.Icons>
       </C.Header>
 
