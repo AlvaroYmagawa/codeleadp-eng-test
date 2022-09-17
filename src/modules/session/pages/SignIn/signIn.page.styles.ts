@@ -1,5 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Typography, Button } from "shared/components/atoms";
+
+const logoAnimation = keyframes`
+  0% { opacity: 0 }
+  100% { opacity: 1; }
+`;
+
+const formAnimation = keyframes`
+  from { height: 0;  opacity: 0 }
+  to { height: 200px; opacity: 1; }
+`;
 
 export const Container = styled.div`
   flex: 1;
@@ -14,12 +24,18 @@ export const Container = styled.div`
 export const Form = styled.form`
   max-width: 500px;
   display: flex;
+  height: 0;  opacity: 0;
   flex-direction: column;
+  animation: ${formAnimation} ease 1s;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
 `;
 
 export const Logo = styled.img`
-  max-width: 300px;
-  margin-bottom: 3rem;
+  position: relative;
+  max-width: 607px;
+  margin-bottom: 5rem;
+  animation: ${logoAnimation} ease-in 1.5s;
 `;
 
 export const Title = styled(Typography)`

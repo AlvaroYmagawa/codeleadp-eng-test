@@ -5,8 +5,11 @@ import { Modal } from "shared/components/atoms";
 import * as C from "./posts.page.styles";
 import { ICreatePostDTO } from "modules/posts/interfaces/dtos";
 import { useAlert } from "shared/contexts/alert.context";
+import { useAppDispatch } from "shared/hooks";
+import { logoutAction } from "modules/session/redux";
 
 export const PostsPage = () => {
+  const dispatch = useAppDispatch();
   const { closeAlert, openAlert } = useAlert();
   const { loadPosts, createPost, updatePost, deletePost, posts, apiStatus } =
     usePosts();
@@ -38,8 +41,26 @@ export const PostsPage = () => {
     [closeAlert, deletePost, openAlert]
   );
 
+  const handleOnLogout = () => {
+    openAlert({
+      message: "Are you sure you want to Log out?",
+      onCancel: closeAlert,
+      onClose: closeAlert,
+      onConfirm: () => {
+        dispatch(logoutAction());
+        closeAlert();
+      },
+    });
+  };
+
   return (
     <C.Container>
+      <C.LogoutButton
+        content="Log out"
+        variant="outlined"
+        onClick={handleOnLogout}
+      />
+
       <C.PostArea onSubmit={createPost} isLoading={apiStatus === "creating"} />
 
       <C.Posts

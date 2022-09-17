@@ -6,3 +6,5 @@ export const saveUsernameAction = createAction(
     payload: { username },
   })
 );
+
+export const logoutAction = createAction("@session/logout");
