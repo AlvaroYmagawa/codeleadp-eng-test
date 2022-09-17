@@ -13,5 +13,5 @@ export const Children = styled.div`
 `;
 
 export const styles = {
-  overlay: { backgroundColor: "#00000060" },
+  overlay: { backgroundColor: "#00000060", padding: 16 },
 };

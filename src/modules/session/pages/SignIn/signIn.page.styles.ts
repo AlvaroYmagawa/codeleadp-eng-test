@@ -36,6 +36,10 @@ export const Logo = styled.img`
   max-width: 607px;
   margin-bottom: 5rem;
   animation: ${logoAnimation} ease-in 1.5s;
+
+  @media(max-width: 720px) {
+    max-width: 80%;
+  }
 `;
 
 export const Title = styled(Typography)`
